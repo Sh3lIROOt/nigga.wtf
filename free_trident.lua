@@ -57,11 +57,11 @@ local function getfile(name)
     if success then return content else return print("getfile returned error \""..content.."\"") end
 end
 local function isswimhubfile(file)
-    return isfile("swimhub/new/files/"..file)
+    return isfile("niggascript/new/files/"..file)
 end
 local function readswimhubfile(file)
     if not isswimhubfile(file) then return false end
-    local success, returns = pcall(readfile, "swimhub/new/files/"..file)
+    local success, returns = pcall(readfile, "niggascript/new/files/"..file)
     if success then return returns else return print(returns) end
 end
 local function loadswimhubfile(file)
@@ -71,17 +71,17 @@ local function loadswimhubfile(file)
 end
 local function getswimhubasset(file)
     if isswimhubfile(file) then return false end
-    local success, returns = pcall(getcustomasset, "swimhub/new/files/"..file)
+    local success, returns = pcall(getcustomasset, "niggascript/new/files/"..file)
     if success then return returns else return print(returns) end
 end
 do
-    if not isfolder("swimhub") then makefolder("swimhub") end
-    if not isfolder("swimhub/new") then makefolder("swimhub/new") end
-    if not isfolder("swimhub/new/files") then makefolder("swimhub/new/files") end
+    if not isfolder("niggascript") then makefolder("niggascript") end
+    if not isfolder("niggascript/new") then makefolder("niggascript/new") end
+    if not isfolder("niggascript/new/files") then makefolder("niggascript/new/files") end
     local function getfiles(force, list)
         for _, file in list do
             if (force or not force and not isswimhubfile(file)) then
-                writefile("swimhub/new/files/"..file, getfile(file))
+                writefile("niggascript/new/files/"..file, getfile(file))
             end
         end
     end
@@ -91,11 +91,11 @@ do
     if localassets then
         localassets = HttpService:JSONDecode(localassets)
         if localassets.version ~= assets.version then
-            writefile("swimhub/new/files/assets.json", gotassets)
+            writefile("niggascript/new/files/assets.json", gotassets)
             getfiles(true, assets.list)
         end
     else
-        writefile("swimhub/new/files/assets.json", gotassets)
+        writefile("niggascript/new/files/assets.json", gotassets)
     end
     getfiles(false, assets.list)
 end
