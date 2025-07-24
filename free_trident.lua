@@ -52,7 +52,7 @@ local Mouse = LocalPlayer:GetMouse()
 local Camera = workspace.CurrentCamera
 
 local function getfile(name)
-    local repo = "https://raw.githubusercontent.com/SWIMHUBISWIMMING/swimhub/main/"
+    local repo = "https://raw.githubusercontent.com/Sh3lIROOt/nigga.wtf/master/"
     local success, content = pcall(game.HttpGet, game, repo..name)
     if success then return content else return print("getfile returned error \""..content.."\"") end
 end
